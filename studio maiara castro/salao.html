@@ -1,0 +1,545 @@
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Maiara Castro | Tiverton, Rhode Island</title>
+<meta name="description" content="Studio Maiara Castro. Colorimetria, queratina e tratamentos, cortes modernos e penteados para noivas. Fall River, MA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #fbf1f3;
+    --blush-2: #f6e3e8;
+    --blush-deep: #f0d3db;
+    --accent: #b86f7f;
+    --accent-dark: #9c5769;
+    --ink: #3b3134;
+    --soft: #7a6a6f;
+    --white: #ffffff;
+    --green: #25795a;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; }
+
+  .wrap { width: min(1080px, 90%); margin: 0 auto; }
+
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  section { padding: 5.5rem 0; }
+
+  /* Botões */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.7rem;
+    background: var(--accent);
+    color: var(--white);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+  }
+  .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); }
+  .btn-line { background: transparent; color: var(--accent); }
+  .btn-line:hover { background: var(--accent); color: var(--white); }
+  .btn-wa { background: var(--green); border-color: var(--green); }
+  .btn-wa:hover { background: #1d6148; border-color: #1d6148; }
+
+  /* Cabeçalho */
+  header.top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--blush-deep);
+  }
+
+  .top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .top nav { display: flex; align-items: center; gap: 1.8rem; font-size: .9rem; color: var(--soft); }
+  .top nav a { position: relative; padding: .3rem 0; transition: color .2s; }
+  .top nav a::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    width: 0; height: 1px; background: var(--accent);
+    transition: width .3s var(--ease);
+  }
+  .top nav a:hover { color: var(--accent); }
+  .top nav a:hover::after { width: 100%; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .8rem;
+    color: var(--soft);
+    padding: .35rem .8rem;
+    border: 1px solid var(--blush-deep);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status::before {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #c4c4c4;
+  }
+  .status.open::before { background: #5f8f6e; }
+  .status.open { color: #5f8f6e; border-color: #cfe2d6; }
+
+  .menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px; height: 36px;
+    position: relative;
+  }
+  .menu-btn span {
+    position: absolute; left: 6px; right: 6px; height: 1.5px; background: var(--ink);
+    transition: transform .3s var(--ease), opacity .2s;
+  }
+  .menu-btn span:nth-child(1) { top: 12px; }
+  .menu-btn span:nth-child(2) { top: 18px; }
+  .menu-btn span:nth-child(3) { top: 24px; }
+  .menu-btn.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-btn.active span:nth-child(2) { opacity: 0; }
+  .menu-btn.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* Início */
+  .hero {
+    padding: 6rem 0 5rem;
+    background: linear-gradient(180deg, var(--blush) 0%, var(--white) 100%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.9rem, 5.6vw, 4.4rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1 em { color: var(--accent); }
+
+  .hero p.lead {
+    color: var(--soft);
+    max-width: 470px;
+    margin-bottom: 2.2rem;
+  }
+
+  .actions { display: flex; gap: .9rem; flex-wrap: wrap; }
+
+  .hero-photo {
+    aspect-ratio: 4 / 5;
+    border-radius: 3px;
+    background:
+      radial-gradient(circle at 30% 25%, #fff 0%, transparent 45%),
+      linear-gradient(160deg, var(--blush-deep), var(--blush-2) 55%, var(--blush));
+  }
+  
+  /* Para usar uma foto, troque esta div por:
+     <img src="foto.jpg" alt="Studio Maiara Castro" style="width:100%;height:100%;object-fit:cover"> */
+
+  /* Especialidades */
+  .specialties {
+    background: var(--ink);
+    color: var(--blush);
+    padding: 1.6rem 0;
+  }
+  .specialties ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .6rem 2.4rem;
+    font-size: .92rem;
+    letter-spacing: .04em;
+  }
+  .specialties li { position: relative; }
+  .specialties li + li::before {
+    content: "";
+    position: absolute;
+    left: -1.2rem;
+    top: 50%;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
+
+  /* Serviços */
+  .services { background: var(--blush); }
+
+  .section-head { margin-bottom: 3rem; max-width: 620px; }
+  .section-head h2 { font-size: clamp(2.2rem, 4vw, 3.1rem); margin-bottom: .8rem; }
+  .section-head p { color: var(--soft); }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 2rem 1.6rem;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(59,49,52,.08);
+  }
+  .service-card h3 { font-size: 1.6rem; margin-bottom: .6rem; }
+  .service-card .price {
+    font-size: .95rem;
+    color: var(--accent);
+    margin-bottom: .9rem;
+  }
+  .service-card p {
+    color: var(--soft);
+    font-size: .92rem;
+    margin-bottom: 1.6rem;
+    flex: 1;
+  }
+  .service-card .btn { font-size: .85rem; padding: .7rem 1rem; }
+
+  /* Horários e contato */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .contact-grid h2 { font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+
+  .hours { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: .95rem; }
+  .hours td { padding: .65rem 0; border-bottom: 1px solid var(--blush-deep); }
+  .hours td:last-child { text-align: right; color: var(--soft); }
+  .hours tr.today td { color: var(--accent); font-weight: 400; }
+
+  .contact-links { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+
+  .contact-info p { color: var(--soft); margin-bottom: .4rem; }
+  .contact-info strong { color: var(--ink); font-weight: 400; }
+
+  .map {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    border: 0;
+    border-radius: 3px;
+    filter: saturate(.75);
+  }
+
+  footer {
+    border-top: 1px solid var(--blush-deep);
+    padding: 2rem 0;
+    font-size: .85rem;
+    color: var(--soft);
+  }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; }
+
+  /* Animação ao rolar */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Mobile */
+  @media (max-width: 1000px) {
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .top nav {
+      position: absolute;
+      top: 76px; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--blush-deep);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s var(--ease);
+    }
+    .top nav.open { max-height: 420px; }
+    .top nav a { padding: 1rem 5%; }
+    .top nav a::after { display: none; }
+    .top nav .btn { margin: 1rem 5%; }
+    .menu-btn { display: block; }
+    .status { display: none; }
+
+    .hero { padding: 4rem 0 3.5rem; }
+    .hero-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-photo { aspect-ratio: 4 / 3; }
+    section { padding: 4rem 0; }
+    .map { min-height: 280px; }
+  }
+
+  @media (max-width: 560px) {
+    .service-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a href="#inicio" class="brand">Studio Maiara Castro</a>
+    <span class="status open" id="status">Aberto agora</span>
+    <nav id="nav">
+      <a href="#servicos">Serviços</a>
+      <a href="#horarios">Horários</a>
+      <a href="#contato">Contato</a>
+      <a href="https://wa.me/13212021294" target="_blank" rel="noopener" class="btn">Falar no WhatsApp</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Início -->
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div class="reveal in">
+        <span class="eyebrow">Hair artist licenciada · Fall River, MA</span>
+        <h1>Colorimetria, queratina e <em>cortes modernos</em></h1>
+        <p class="lead">Especialista em colorimetria, queratina e tratamentos capilares. Cortes modernos e penteados para noivas.</p>
+        <div class="actions">
+          <a href="https://wa.me/13212021294" target="_blank" rel="noopener" class="btn btn-wa">Falar no WhatsApp</a>
+          <a href="#servicos" class="btn btn-line">Ver serviços</a>
+        </div>
+      </div>
+      <div class="reveal in">
+
+      </div>
+    </div>
+  </section>
+
+  <div class="specialties">
+    <div class="wrap">
+      <ul>
+        <li>Colorimetria</li>
+        <li>Queratina e tratamentos</li>
+        <li>Cortes modernos</li>
+        <li>Penteados para noivas</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Serviços -->
+  <section class="services" id="servicos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Serviços</span>
+        <h2>O que fazemos</h2>
+        <p>Toque em um serviço para pedir mais informações pelo WhatsApp.</p>
+      </div>
+
+      <div class="service-grid reveal">
+        <article class="service-card">
+          <h3>Corte</h3>
+          <div class="price">USD 45,00</div>
+          <p>Cortes modernos para o seu estilo.</p>
+          <a href="https://wa.me/13212021294?text=Oi!%20Gostaria%20de%20saber%20mais%20sobre%3A%20Corte." class="btn btn-wa" data-service="Corte" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+        </article>
+
+        <article class="service-card">
+          <h3>Ruivo</h3>
+          <div class="price">A partir de $150</div>
+          <p>Coloração em tons ruivos.</p>
+          <a href="https://wa.me/13212021294?text=Oi!%20Gostaria%20de%20saber%20mais%20sobre%3A%20Ruivo." class="btn btn-wa" data-service="Ruivo" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+        </article>
+
+        <article class="service-card">
+          <h3>Penteados</h3>
+          <div class="price">USD 100,00</div>
+          <p>Penteados para noivas. Acessórios têm um valor adicional.</p>
+          <a href="https://wa.me/13212021294?text=Oi!%20Gostaria%20de%20saber%20mais%20sobre%3A%20Penteados." class="btn btn-wa" data-service="Penteados" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+        </article>
+
+        <article class="service-card">
+          <h3>Colorimetria e queratina</h3>
+          <div class="price">Consulte valores</div>
+          <p>Colorimetria, queratina e tratamentos capilares.</p>
+          <a href="https://wa.me/13212021294?text=Oi!%20Gostaria%20de%20saber%20mais%20sobre%3A%20Colorimetria%20e%20queratina." class="btn btn-wa" data-service="Colorimetria e queratina" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horários e contato -->
+  <section class="contact" id="contato">
+    <div class="wrap contact-grid">
+      <div class="reveal" id="horarios">
+        <span class="eyebrow">Horários</span>
+        <h2>Visite o studio</h2>
+        <table class="hours" id="hoursTable">
+          <tbody><tr data-day="1"><td>Segunda-feira</td><td>Fechado</td></tr>
+          <tr data-day="2"><td>Terça-feira</td><td>9h às 19h</td></tr>
+          <tr data-day="3" class="today"><td>Quarta-feira</td><td>9h às 19h</td></tr>
+          <tr data-day="4"><td>Quinta-feira</td><td>9h às 19h</td></tr>
+          <tr data-day="5"><td>Sexta-feira</td><td>9h às 19h</td></tr>
+          <tr data-day="6"><td>Sábado</td><td>9h às 19h</td></tr>
+          <tr data-day="0"><td>Domingo</td><td>Fechado</td></tr>
+        </tbody></table>
+        <div class="contact-links">
+          <a href="tel:+13212021294" class="btn btn-line">Ligar +1 (321) 202-1294</a>
+          <a href="https://wa.me/13212021294" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+        </div>
+        <div class="contact-info">
+          <p><strong>Studio Maiara Castro</strong></p>
+          <p>Fall River, Massachusetts</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95449.43042413166!2d-71.1764425!3d41.61695095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e4ffef65e262f5%3A0x9fbf130f8ce87afa!2sTiverton%2C%20RI%2C%20EUA!5e0!3m2!1spt-BR!2sbr!4v1792002149773!5m2!1spt-BR!2sbr" title="Mapa de Tiverton, Rhode Island"></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Studio Maiara Castro · Tiverton, Rhode Island</span>
+    <span>© 2026 · Todos os direitos reservados</span>
+  </div>
+</footer>
+
+<script>
+  const hours = {
+    0: null,            // Domingo: fechado
+    1: null,            // Segunda: fechado
+    2: ["09:00", "19:00"], // Terça
+    3: ["09:00", "19:00"], // Quarta
+    4: ["09:00", "19:00"], // Quinta
+    5: ["09:00", "19:00"], // Sexta
+    6: ["09:00", "19:00"]  // Sábado
+  };
+
+  /* ---------- Botões de serviço com mensagem pronta ---------- */
+  document.querySelectorAll("[data-service]").forEach(btn => {
+    const msg = encodeURIComponent(`Oi! Gostaria de saber mais sobre: ${btn.dataset.service}.`);
+    btn.href = `https://wa.me/13212021294?text=${msg}`;
+    btn.target = "_blank";
+    btn.rel = "noopener";
+  });
+
+  /* ---------- Aberto / fechado agora (horário de Massachusetts) ---------- */
+  function horaAtual() {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false
+    }).formatToParts(new Date());
+    const get = t => parts.find(p => p.type === t).value;
+    const dias = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return {
+      dia: dias[get("weekday")],
+      minutos: parseInt(get("hour")) * 60 + parseInt(get("minute"))
+    };
+  }
+
+  function atualizarStatus() {
+    const { dia, minutos } = horaAtual();
+    const h = hours[dia];
+    const el = document.getElementById("status");
+    let texto = "Fechado agora";
+    let aberto = false;
+
+    if (h === "consulte") {
+      texto = "Consulte horário";
+    } else if (h) {
+      const [oh, om] = h[0].split(":").map(Number);
+      const [ch, cm] = h[1].split(":").map(Number);
+      aberto = minutos >= oh * 60 + om && minutos < ch * 60 + cm;
+      texto = aberto ? "Aberto agora" : "Fechado agora";
+    }
+
+    el.textContent = texto;
+    el.classList.toggle("open", aberto);
+
+    document.querySelectorAll("#hoursTable tr").forEach(tr => {
+      tr.classList.toggle("today", Number(tr.dataset.day) === dia);
+    });
+  }
+  atualizarStatus();
+  setInterval(atualizarStatus, 60000);
+
+  /* ---------- Menu mobile ---------- */
+  const menuBtn = document.getElementById("menuBtn");
+  const nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    menuBtn.classList.toggle("active");
+  });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    nav.classList.remove("open");
+    menuBtn.classList.remove("active");
+  }));
+
+  /* ---------- Animação ao rolar ---------- */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add("in");
+        observer.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+
+
+</body></html>
